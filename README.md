@@ -2,7 +2,7 @@
 
 A php cli tool to explore the web
 
-Usage : multicurl.php --action ACTION [OPTIONS]
+<pre>Usage : multicurl.php --action ACTION [OPTIONS]
         ACTION :
              - google : Needs parameter query, will find for query on google
              - simple : Needs parameter query, will curl query
@@ -19,9 +19,10 @@ Usage : multicurl.php --action ACTION [OPTIONS]
              - preg_by     : ... by this pattern (in output)
              - multiply    : Multiply output by n
              - verbose | v : Display more informations
-             - help    | h : Display this help
+             - help    | h : Display this help</pre>
             
 Exemple : 
+<pre>
   ./multicurl.php --action google --query test
   ./multicurl.php --action google --query test | ./multicurl.php --action simple
-  ./multicurl.php --action google --query 'inurl:.php?id=' --rep_search '.php?id=' --rep_by '.php?id=a' | ./multicurl.php --action simple --regexp \'/(.*)?mysql_error(.*)?/\'
+  ./multicurl.php --action google --query 'inurl:.php?id=' --rep_search '.php?id=' --rep_by '.php?id=a' | ./multicurl.php --action simple --regexp \'/(.*)?mysql_error(.*)?/\'</pre>
