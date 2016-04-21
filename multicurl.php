@@ -43,8 +43,8 @@ class Api
 	public function displayTestimonial()
 	{
 		$this->display('[+] Multicurl v0.1');
-		$this->display('[+] Made with love by inso');
-		$this->display('[+] Last release july 2015');
+		$this->display('[+] Made with love by ins0');
+		$this->display('[+] Last release april 2016');
 	}
 }
 ##############################################################
@@ -171,7 +171,7 @@ abstract class Config
 			'Yahoo', 'Legal', 'GoogleScholar', 'Lexis', 'Manupatra', 'Quicklaw', 'WestLaw', 'Medical', 'Bing Health', 'Bioinformatic', 'CiteAb', 'EB-eye', 'Entrez', 'mtv', 'ubuntu',
 			'GenieKnows', 'GoPubMed', 'Healia', 'Healthline', 'Nextbio', 'PubGene', 'Quertle', 'Searchmedica', 'WebMD', 'News', 'BingNews', 'Daylife', 'GoogleNews', 'aol', 'microsoft',
 			'MagPortal', 'Newslookup', 'Nexis', 'Topix', 'Trapit', 'YahooNews', 'People', 'Comfibook', 'Ex.plode', 'InfoSpace', 'PeekYou', 'Spock', 'Spokeo', 'WorldwideHelpers', 'iPhone',
-			'Zabasearch', 'ZoomInfo', 'Fizber', 'HotPads', 'Realtor', 'Redfin', 'Rightmove', 'Trulia', 'Zillow', 'Zoopla', 'StuRents', 'globo', 'sbt', 'band', 'cnn', 'blog.inurl.com.br'
+			'Zabasearch', 'ZoomInfo', 'Fizber', 'HotPads', 'Realtor', 'Redfin', 'Rightmove', 'Trulia', 'Zillow', 'Zoopla', 'StuRents', 'globo', 'sbt', 'band', 'cnn'
 		);
 	}
 
@@ -196,13 +196,13 @@ abstract class Config
 			'DECOM', 'Dashboard', 'Drives', 'Dynamic', 'FCKeditor', 'Feedback', 'Files', 'Flash', 'Forms', 'Help', 'ICEcore', 'IO', 'Image', 'JPG', 'getold',
 			'JSP', 'KFSI', 'Laguna', 'Login', 'Motors', 'MultiSites', 'NR', 'OCodger', 'RSS', 'Safety', 'Smarty', 'Software', 'Static', 'Stress', 'getfull',
 			'Sugarcrm', 'Travel', 'UPLOAD', 'Urussanga', 'UserFiles', '__tpl', '_fckeditor', '_info', '_machine', '_plugins', '_sample', '_samples', 'postmost',
-			'_source', '_testcases', 'aaa', 'abelardoluz', 'aberlardoluz', 'aborto', 'about', 'aboutus', 'abuse', 'abusers', 'ac_drives', 'acabamentos', 'mail',
-			'academias', 'acao', 'acartpro', 'acatalog', 'acc', 'acc_auto_del', 'acc_beep_ken', 'acc_beep_time', 'acc_ch_mail', 'acc_fc_prsc', 'accounts', 'validar',
+			'_source', '_testcases', 'aaa', 'about', 'aboutus', 'abuse', 'abusers', 'ac_drives', 'acabamentos', 'mail',
+			'academias', 'acao', 'acartpro', 'acatalog', 'acc', 'acc_auto_del', 'acc_beep_ken', 'acc_beep_time', 'acc_ch_mail', 'acc_fc_prsc', 'accounts', 'valid',
 			'acc_html_mark', 'acc_html_rand', 'acc_lan_page', 'acc_pic_html', 'acc_profol', 'acc_soft_link', 'acc_ssd_page', 'acc_syun_ei', 'german', 'intranet', 'old',
-			'acc_time_go', 'acc_wbcreator', 'accept', 'accepted', 'acceso', 'access', 'accessibility', 'accessories', 'acciones', 'acclg', 'account', 'paste', 'paste22',
-			'acessorios', 'acontece', 'acougueiro', 'acoustic', 'act', 'action', 'activate', 'active', 'activeden', 'activism', 'actualit', 'actuators', 'ad', 'informatica',
+			'acc_time_go', 'acc_wbcreator', 'accept', 'accepted', 'access', 'accessibility', 'accessories','acclg', 'account', 'paste', 'paste22',
+			'acessorios', 'acontece', 'acougueiro', 'acoustic', 'act', 'action', 'activate', 'active', 'activeden', 'actualit', 'actuators', 'ad', 'informat',
 			'ad_division', 'ad_rate', 'adapter', 'adapters', 'adaptive', 'adaptivei', 'adatmentes', 'adbanner', 'adblock', 'adboard', 'adclick', 'add-ons', 'add', 'delete',
-			'added', 'addon', 'address', 'adduser', 'adfree', 'adhoc', 'adinfo', 'adios_papa', 'adlink', 'adlinks', 'acc_folder_vw', 'acc_syun_su',
+			'added', 'addon', 'address', 'adduser', 'adfree', 'adhoc', 'adinfo', 'adlink', 'adlinks', 'acc_folder_vw', 'acc_syun_su'
 		);
 	}
 
@@ -420,7 +420,7 @@ $command_list = array(
 		'verbose::'
 	);
 
-$options = getopt('h::v::', $command_list);
+$options = getopt('h::v::g::s::q:', $command_list);
 
 $api = new Api();
 $api->verbose = isset($options['verbose']) || isset($options['v']);
@@ -441,7 +441,7 @@ $help = isset($options['help']) || isset($options['h']);
 
 if(($query = stream_get_contents(STDIN)) == '')
 {
-	$query = !isset($options['query']) ?: array($options['query']);
+	$query = isset($options['q']) ? array($options['q']) : (isset($options['query']) ?: array($options['query']));
 }
 else
 {
@@ -466,11 +466,11 @@ if(
 	echo '[+] Usage : multicurl.php --action ACTION [OPTIONS]', "\n";
 	echo '[+]', "\n";
 	echo '[+]         ACTION :', "\n";
-	echo '[+]              - google : Needs parameter query, will find for query on google', "\n";
-	echo '[+]              - simple : Needs parameter query, will curl query', "\n";
+	echo '[+]              - google | g : Needs parameter query, will find for query on google', "\n";
+	echo '[+]              - simple | s : Needs parameter query, will curl query', "\n";
 	echo '[+]', "\n";
 	echo '[+]         OPTIONS :', "\n";
-	echo '[+]              - query       : It might be an URL (or an array of URL) or a word (or an array of word) to search in google', "\n";
+	echo '[+]              - query   | q : It might be an URL (or an array of URL) or a word (or an array of word) to search in google', "\n";
 	echo '[+]                              Query can also be defined using standard input', "\n";
 	echo '[+]                              Ex : echo "google.fr" | ./multicurl.php --action simple', "\n";
 	echo '[+]                              Is the same as : ./multicurl.php --action simple --query google.fr', "\n";
@@ -486,15 +486,26 @@ if(
 	exit;
 }
 
-switch ($action)
+if(isset($options['s']))
 {
-	case 'simple':
-		$urls = $query;
-		break;
+	$urls = $query;
+}
+elseif(isset($options['g']))
+{
+	$urls = UrlBuilder::buildGoogle($query);
+}
+else
+{
+	switch ($action)
+	{
+		case 'simple':
+			$urls = $query;
+			break;
 
-	case 'google':
-		$urls = UrlBuilder::buildGoogle($query);
-		break;
+		case 'google':
+			$urls = UrlBuilder::buildGoogle($query);
+			break;
+	}
 }
 
 $multiCurl = new MultiCurl($urls);
